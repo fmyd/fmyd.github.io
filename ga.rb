@@ -21,7 +21,7 @@ class Analytics
   def report_users_count_by_date#(date)
     date_range = @analytics::DateRange.new(start_date: '7DaysAgo', end_date: 'today')
     metric = @analytics::Metric.new(expression: 'ga:users', alias: 'users')
-    dimension = @analytics::Dimension.new(name: 'ga:Timestanp')
+    dimension = @analytics::Dimension.new(name: 'ga:dimension1')
 #    order_by = @analytics::OrderBy.new(field_name: 'ga:users', sort_order: 'DESCENDING')
     request = @analytics::GetReportsRequest.new(
       report_requests: [@analytics::ReportRequest.new(
@@ -37,12 +37,12 @@ class Analytics
     pp data
     return {
       total: data.totals.first.values.first,
-      pages: data.rows.map do |row|
-        {
+#      pages: data.rows.map do |row|
+ #       {
           #url: @base_url + row.dimensions.first,
-          views: row.metrics.first.values.first
-        }
-      end
+  #        views: row.metrics.first.values.first
+   #     }
+   #   end
     }
   end
 
